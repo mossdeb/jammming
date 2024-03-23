@@ -40,19 +40,8 @@ div{
 .login{
     width: 100%;
     color: rgb(45, 32, 81);
-    display: flex;
+    display: inline-grid;
     justify-content: center;
     padding: 15px 0px;
+    flex-flow: row wrap;
 }
-
-/* .resultsMain{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
-
-/* .bg{
-    background: rgb(158,120,241);
-    background: radial-gradient(circle, rgba(158,120,241,1) 0%, rgba(153,255,197,1) 100%);
-} */

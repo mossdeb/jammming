@@ -13,7 +13,7 @@ import styleDefault from './css/default.module.css'
 //
 import {tracksList} from './util/tracksList.js'
 //
-import {SpotifyAuth, searchSpotify, savePlaylistSpotify} from  './util/spotify.js';
+import {SpotifyAuth, searchSpotify, savePlaylistSpotify, handleLoginStatev2} from  './util/spotify.js';
 
 
 
@@ -27,6 +27,16 @@ function App() {
     const [playlist, setPlaylist] = useState([]);
     const [playListName, setPlayListName] = useState("Electro");
     const [searchValue, setSearchValue] = useState("");
+    const [login, setLogin] = useState(false);
+
+
+
+
+    useEffect( (login)=> {   
+          const teste = handleLoginStatev2();
+          console.log(`AQUI MAIS ${teste}`);
+          setLogin(teste);
+     },[login]);
 
 
 
@@ -84,9 +94,15 @@ function App() {
     return (
       <div>
       <HeaderJam/> 
-      <SpotifyAuth/>
-      <SearchBar btSearch={HandleSearch}/>                          
-      <CardsMaster resultsList={results} playList ={playlist} handleName={handleName} placeholder={playListName} AddTrack={AddTrack} RemoveTrack={RemoveTrack} btSavePlayList={SavePlayList} searchValue={searchValue}/>
+      { !login? (<SpotifyAuth/>) :( 
+                <>
+                <SearchBar btSearch={HandleSearch}/>                          
+                <CardsMaster resultsList={results} playList ={playlist} handleName={handleName} placeholder={playListName} AddTrack={AddTrack} RemoveTrack={RemoveTrack} btSavePlayList={SavePlayList} searchValue={searchValue}/>
+                </> 
+      )
+
+      }
+      
 
       <FooterBar/>   
       

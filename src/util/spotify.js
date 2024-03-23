@@ -5,7 +5,6 @@ import styleDefault from '../css/default.module.css'
 
 
 const client_id = '9b59517794744bfb9bbc20fb9b69f15d';
-const client_secret = '3e8accd43bb64588ad80908319fce43d';
 var my_access_token = '';
 var login = false;
 var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri 'http://localhost:3000/callback';
@@ -14,10 +13,22 @@ const url = 'https://api.spotify.com';
 
 const REDIRECT_URI = redirect_uri; // Change this to your redirect URI
 
+function handleLoginStatev2(props){
+  if(my_access_token){
+
+    return true;
+  }else{
+    return false;
+  }
 
 
 
-const SpotifyAuth = () => {
+ // props.handleLoginState(true);
+
+}
+
+
+const SpotifyAuth = (props) => {
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
@@ -25,10 +36,14 @@ const SpotifyAuth = () => {
     const token = params.get('access_token');
     if (token) {
       setAccessToken(token);
+      my_access_token = token;
     }
   }, []);
 
-  const handleLogin = () => {
+
+  
+  const handleLogin = (props) => {
+    
     const queryParams = new URLSearchParams({
       client_id: client_id,
       redirect_uri: REDIRECT_URI,
@@ -39,17 +54,12 @@ const SpotifyAuth = () => {
     window.location.href = `https://accounts.spotify.com/authorize?${queryParams}`;
   };
   //console.log(accessToken);
-  my_access_token =accessToken;
 
-
+          
   return (
     <div className={styleDefault.login} >
-      {accessToken ? (  <></>) : (
-        <div>
-       <p>Login in To start use the app</p>
+       <p>Login with your spotify account</p>
         <ButtonCTA buttonAction={handleLogin} name= "Login with Spotify"/>
-       </div>
-      )}
       
     </div>
   );
@@ -58,18 +68,19 @@ const SpotifyAuth = () => {
 
 
 /*
-  return (
+return (
     <div className={styleDefault.login} >
-      {accessToken ? ( <p> </p>) : (
+      {accessToken ? (  <>   <ButtonCTA buttonAction={handleLogin} name= "Login with Spotify"/>       </>
+
+      ) : (
         <div>
        <p>Login in To start use the app</p>
         <ButtonCTA buttonAction={handleLogin} name= "Login with Spotify"/>
        </div>
       )}
-       <p>login Success</p>
+      
     </div>
   );
-};
 */
 
 ////// ------- /////// --------////// ------- /////// --------////// ------- /////// --------////// ------- /////// --------////// ------- /////// --------////// ------- /////// --------
@@ -191,4 +202,4 @@ const savePlaylistSpotify = async (playlist, playListName) => {
 }
 
 
-export {SpotifyAuth, searchSpotify, savePlaylistSpotify};
+export {SpotifyAuth, searchSpotify, savePlaylistSpotify, handleLoginStatev2};
