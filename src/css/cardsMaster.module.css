@@ -1,0 +1,50 @@
+.resultsMain{
+
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: space-around;
+    align-items: top;
+    padding: 1% 4%;
+}
+
+
+.text1{
+    display: inline;
+    width: 100%;
+    
+    margin: 0% 0% 4% 5%;
+}
+
+
+.card{
+    width: 40%; 
+    background-color: rgb(45, 32, 81, 0.97);
+    border-radius: 22px;
+    padding: 40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    color: #fff;
+}
+
+.content{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+
+.box{
+    display: flex;
+    align-items: center;
+   justify-content: space-between;
+   
+}
+
+
+.box h2{
+   width: 40%;
+   
+}
